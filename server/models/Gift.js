@@ -12,7 +12,11 @@ const giftSchema = new Schema({
     type: Number,
     required: false,
     trim: true,
-  }
+  },
+  itemBought: {
+      type: boolean,
+      default: false,
+  },
 });
 
 const Wishlist = model('Wishlist', wishlistSchema);
