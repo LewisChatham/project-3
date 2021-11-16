@@ -21,6 +21,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    wishlists: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Wishlist',
+          },
+    ],
 })
 
 
@@ -50,3 +56,8 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
+
+
+const User = model('User', userSchema);
+
+module.exports = User;
