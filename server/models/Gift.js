@@ -1,24 +1,18 @@
 const { Schema, model } = require('mongoose');
 
-const wishlistSchema = new Schema({
-  listName: {
+const giftSchema = new Schema({
+  giftName: {
     type: String,
     required: 'Please Enter a Name',
     minlength: 1,
     maxlength: 40,
     trim: true,
   },
-  priceLimit: {
+  price: {
     type: Number,
     required: false,
     trim: true,
-  },
-  gifts: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'Gift',
-      },
-  ],
+  }
 });
 
 const Wishlist = model('Wishlist', wishlistSchema);
