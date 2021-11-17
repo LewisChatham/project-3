@@ -26,22 +26,32 @@ const typeDefs = gql`
   type Auth {
     token: ID!
     user: User
+  } 
+  
+  input giftInput {
+    _id: ID
+    giftName: String
+    price: Number
+    itemBought: Boolean
   }
 
   type Query {
-    user(username: String!): User
     wishlists: [Wishlist]
     wishlist(wishlistId: ID!): Wishlist
     me: User
   }
 
+ 
+
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWishlist(listName: String!, priceLimit: Number): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addWishlist(listName: String!, priceLimit: Number): Wishlist
+    removeWishlist(wishlistId: ID!): Wishlist
+    updateWishlist(listName: String!, priceLimit: Number!) : Wishlist
+    addGift(input: giftInput!): Wishlist
+    removeGift(giftId: ID!, WishlistId): Wishlist
+    updateGift(giftId: ID!, WishlistId): Wishlist
   }
 `;
 
