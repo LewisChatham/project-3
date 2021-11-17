@@ -10,7 +10,7 @@ const typeDefs = gql`
   }
 
   type Wishlist {
-    _ID: ID
+    _id: ID
     listName: String
     priceLimit: Number
     gifts: [Gift]!
@@ -36,7 +36,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    wishlists: [Wishlist]
     wishlist(wishlistId: ID!): Wishlist
     me: User
   }
@@ -50,8 +49,8 @@ const typeDefs = gql`
     removeWishlist(wishlistId: ID!): Wishlist
     updateWishlist(listName: String!, priceLimit: Number!) : Wishlist
     addGift(input: giftInput!): Wishlist
-    removeGift(giftId: ID!, WishlistId): Wishlist
-    updateGift(giftId: ID!, WishlistId): Wishlist
+    removeGift(giftId: ID!, WishlistId: ID!): Wishlist
+    updateGift(giftId: ID!, WishlistId: ID!): Wishlist
   }
 `;
 
