@@ -62,6 +62,22 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    updateWishlist: async (parent, { listName, priceLimit }, context) => {
+        if (context.user) {
+          const wishlist = await Wishlist.findOne({
+            listName,
+            priceLimit,
+          });
+  
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { wishlists: wishlist._id } }
+          );
+  
+          return wishlist;
+        }
+        throw new AuthenticationError("You need to be logged in!");
+      },
     removeWishlist: async (parent, { wishlistId }, context) => {
       if (context.user) {
         const wishlist = await Wishlist.findOneAndDelete({
@@ -72,10 +88,49 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { wishlists: wishlist._id } }
         );
+
+        return wishlist;
       }
 
       throw new AuthenticationError("You need to be logged in!");
     },
+    addGift: async(parent, {wishlistId, input}, context) => {
+        if(context.user){
+            return await Wishlist.findOneAndUpdate(
+                {_id: wishlistId},
+                {$addToSet: {gifts: input} },
+                { new: true, runValidators: true });
+
+        }
+        throw new AuthenticationError('You need to be logged in!');
+    },
+    updateGift: async(parent, {wishlistId, input}, context) => {
+        if(context.user){
+            return await Wishlist.findOneAndUpdate(
+                {_id: wishlistId},
+                {$addToSet: {gifts: input} },
+                { new: true, runValidators: true });
+
+        }
+        throw new AuthenticationError('You need to be logged in!');
+        // ask Rhys how to resolve this
+    },
+    removeGift: async(parent, {wishlistId, giftId}, context) => {
+        if (context.user) {
+            return Wishlist.findOneAndUpdate(
+              { _id: wishlistId },
+              {
+                $pull: {
+                  gift: {
+                    _id: giftId,
+                  },
+                },
+              },
+              { new: true }
+            );
+          }
+          throw new AuthenticationError('You need to be logged in!');
+    }
   },
 };
 
