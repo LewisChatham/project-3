@@ -14,11 +14,11 @@ const giftSchema = new Schema({
     trim: true,
   },
   itemBought: {
-      type: boolean,
+      type: Boolean,
       default: false,
   },
 });
 
-const Wishlist = model('Wishlist', wishlistSchema);
+const Gift = model('Gift', giftSchema);
 
-module.exports = Wishlist;
+module.exports = Gift;
