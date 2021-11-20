@@ -1,11 +1,56 @@
 import React from 'react';
-// First we import our Hello component from our components folder.
-import Hello from './components/Hello';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-// React apps typically have a single App component at the very top that can reference other React components.
-// This component, `App`, is our main component that is importing `Hello` and rendering it in the return method.
+import Home from './pages/Home';
+import Wishlist from './pages/Wishlist';
+import Navbar from './components/Navbar';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+
 function App() {
-  return <Hello />;
+  return ( 
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/wishlist/:id' component={Wishlist} />
+            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          </Switch>
+        </>
+
+      </Router>
+    </ApolloProvider>
+  );
 }
 
 export default App;
