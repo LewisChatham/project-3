@@ -25,7 +25,7 @@ const WishlistForm = () => {
         },
       });
 
-      setThoughtText('');
+      setWishlistFormData({wishlistName : "", wishlistLimit: "", });
     } catch (err) {
       console.error(err);
     }
@@ -33,7 +33,7 @@ const WishlistForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...wishlistFormData, [name]: value });
+    setWishlistFormData({ ...wishlistFormData, [name]: value });
   };
 
   return (

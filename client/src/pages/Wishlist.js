@@ -27,8 +27,6 @@ const Wishlist = () => {
 
             {
                 giftList.map((gift) => {
-
-
                     return (
                         <>
                             <div key = {gift._id }>
@@ -38,6 +36,7 @@ const Wishlist = () => {
                                 <div> 
                                     Gift Price (£): {gift.price}
                                 </div>
+                                    <a href = {gift.giftLink} target="_blank" linkrel="noreferrer"> Link to Gift</a>
                                 
                            </div>
                     </>

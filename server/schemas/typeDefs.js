@@ -20,6 +20,7 @@ const typeDefs = gql`
     _id: ID
     giftName: String
     price: Float
+    giftLink: String
     itemBought: Boolean
   }
 
@@ -32,6 +33,7 @@ const typeDefs = gql`
     _id: ID
     giftName: String
     price: Float
+    giftLink: String
     itemBought: Boolean
   }
 
