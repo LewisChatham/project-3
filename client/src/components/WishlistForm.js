@@ -11,7 +11,7 @@ const WishlistForm = () => {
   const [wishlistFormData, setWishlistFormData] = useState({wishlistName : "", wishlistLimit: "", });
 
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT);
+//   const [addThought, { error }] = useMutation(ADD_THOUGHT);
 
 
   const handleFormSubmit = async (event) => {
