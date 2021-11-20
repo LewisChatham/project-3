@@ -8,8 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
+import Home from './pages/Home';
+import Wishlist from './pages/Wishlist';
 import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
@@ -35,20 +35,20 @@ const client = new ApolloClient({
 });
 
 
-// First we import our Hello component from our components folder.
-import Hello from './components/Hello';
-
-// React apps typically have a single App component at the very top that can reference other React components.
-// This component, `App`, is our main component that is importing `Hello` and rendering it in the return method.
-
-
-
-
-
 function App() {
   return ( 
     <ApolloProvider client={client}>
-      <Hello />;
+      <Router>
+        <>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/wishlist/:id' component={Wishlist} />
+            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          </Switch>
+        </>
+
+      </Router>
     </ApolloProvider>
   );
 }
