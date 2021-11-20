@@ -5,14 +5,11 @@ import { useQuery } from '@apollo/client';
 
 import WishlistForm from '../components/WishlistForm';
 
-// import ThoughtForm from '../components/ThoughtForm';
-
-// import { QUERY_THOUGHTS } from '../utils/queries';
+import { } from '../utils/';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const dataMe = data?.me || {};
-
 
   return (
     <main>
