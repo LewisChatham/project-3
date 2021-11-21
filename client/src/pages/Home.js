@@ -1,15 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import WishlistForm from '../components/WishlistForm';
 
-import { } from '../utils/';
+import {QUERY_ME} from '../utils/queries'
+
+import {REMOVE_WISHLIST} from '../utils/mutations'
+
+import Auth from '../utils/auth';
 
 const Home = () => {
+  
   const { loading, data } = useQuery(QUERY_ME);
   const dataMe = data?.me || {};
+  const myWishlists = dataMe?.wishlists || [];
+
+  console.log(myWishlists);
+
+
+  const [removeWishlist, {error}] = useMutation(REMOVE_WISHLIST);
+
+  const handleDeleteWishlist = async (wishlistId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const {data} = await removeWishlist({variables: {wishlistId} });
+
+      console.log({data})
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
+
 
   return (
     <main>
@@ -24,19 +55,28 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            dataMe.wishlists.map((wishlist) => {
+            myWishlists.map((myWishlist) => {
               return (
                 <>
-                <Link to={`/wishlist/${wishlist._id}`}>
-                <div key = {wishlist._id} >
+                <div key = {myWishlist._id}>
+                <Link to={`/wishlist/${myWishlist._id}`}>
+                <div key = {myWishlist._id} >
                   <div>
-                    list name: {wishlist.listName}
+                    list name: {myWishlist.listName}
                   </div>
                   <div>
-                    priceLimit: {wishlist.priceLimit}
+                    price limit: {myWishlist.priceLimit}
                   </div>
                 </div> 
                 </Link>
+                <button
+                  className="btn btn-block btn-primary"
+                  style={{ cursor: 'pointer' }}
+                  onClick = {() => handleDeleteWishlist(myWishlist._id)}
+                >
+                  Delete This Wishlist
+                </button>
+                </div>
                 </>
               )
             })

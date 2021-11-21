@@ -13,7 +13,7 @@ const resolvers = {
           { _id: context.user ? context.user._id : id },
           { username: context.user.username },
         ],
-      }).populate("Wishlists");
+      }).populate("wishlists");
 
       if (!foundUser) {
         throw new AuthenticationError("You need to be logged in!");

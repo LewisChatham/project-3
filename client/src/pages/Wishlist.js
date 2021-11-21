@@ -3,6 +3,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
+import GiftForm from '../components/GiftForm'
+
+import {QUERY_WISHLIST} from '../utils/queries'
+
+
 
 const Wishlist = () => {
     const {wishlistId} = useParams();
@@ -24,7 +29,8 @@ const Wishlist = () => {
         <>
             <GiftForm />
             <br />
-
+            <div>{wishlist.listname}</div>
+            <div>{wishlist.priceLimit}</div>
             {
                 giftList.map((gift) => {
                     return (
@@ -36,10 +42,10 @@ const Wishlist = () => {
                                 <div> 
                                     Gift Price (£): {gift.price}
                                 </div>
-                                    <a href = {gift.giftLink} target="_blank" linkrel="noreferrer"> Link to Gift</a>
+                                    <a href = {gift.giftLink} target="_blank" rel="noopener noreferrer"> Link to Gift</a>
                                 
                            </div>
-                    </>
+                        </>
                     )
             })}
 

@@ -23,7 +23,7 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_WISHLIST = gql`
-     query getWishlist(wishlistId: ID!) {
+     query getWishlist($wishlistId: ID!) {
             wishlists(wishlistId: $wishlistId) {
                 _id
                 listName
