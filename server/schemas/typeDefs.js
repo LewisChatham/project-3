@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   type Gift {
-    _id: ID
+    _id: String
     giftName: String
     price: String
     giftLink: String
@@ -30,15 +30,14 @@ const typeDefs = gql`
   } 
   
   input giftInput {
-    _id: ID
     giftName: String
-    price: Float
+    price: String
     giftLink: String
     itemBought: Boolean
   }
 
   type Query {
-    wishlist(wishlistId: ID!): Wishlist
+    wishlist(wishlistId: String!): Wishlist
     me: User
   }
 
@@ -46,11 +45,11 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addWishlist(listName: String!, priceLimit: String): Wishlist
-    removeWishlist(wishlistId: ID!): Wishlist
+    removeWishlist(wishlistId: String!): Wishlist
     updateWishlist(listName: String!, priceLimit: String!) : Wishlist
-    addGift(wishlistid: ID, input: giftInput!): Wishlist
-    removeGift(giftId: ID!, WishlistId: ID!): Wishlist
-    updateGift(wishlistid: ID, input: giftInput!): Wishlist
+    addGift(wishlistId: String!, input: giftInput!): Wishlist
+    removeGift(giftId: String!, WishlistId: String!): Wishlist
+    updateGift(wishlistid: String, input: giftInput!): Wishlist
   }
 `;
 

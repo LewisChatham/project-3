@@ -33,6 +33,7 @@ const WishlistForm = () => {
       console.log(data);
 
       setWishlistFormData({ listName: "", priceLimit: "" });
+      window.location.assign("/")
     } catch (err) {
       console.error(err);
     }
@@ -42,6 +43,10 @@ const WishlistForm = () => {
     const { name, value } = event.target;
     setWishlistFormData({ ...wishlistFormData, [name]: value });
   };
+
+  if(!Auth.loggedIn()){
+    return (<h1> Please Login or sign up to add wishlists </h1>)
+  }
 
   return (
     <div>

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 
+
+import { useParams } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { ADD_GIFT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
+
+
 const GiftForm = () => {
   const [giftFormData, setGiftFormData] = useState({
     giftName: "",
     price: "",
     giftLink: "",
+    itemBought: false,
   });
+
+  const { wishlistId } = useParams();
 
   const [addGift, { error }] = useMutation(ADD_GIFT);
 
@@ -26,7 +33,7 @@ const GiftForm = () => {
         return false;
       }
       
-      const { data } = await addGift({ variables: { ...giftFormData } });
+      const { data } = await addGift({ variables: {wishlistId, input: giftFormData } });
       console.log(data);
 
       setGiftFormData({ giftName: "", price: "", giftLink: "" });
@@ -49,7 +56,7 @@ const GiftForm = () => {
         <div className="col-12 col-lg-9">
           <textarea
             name="giftName"
-            placeholder="New Wishlist Name"
+            placeholder="Gift Name"
             value={giftFormData.giftName}
             className="form-input w-100"
             style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -59,8 +66,8 @@ const GiftForm = () => {
 
         <div className="col-12 col-lg-9">
           <textarea
-            name="giftPrice"
-            placeholder="New Wishlist Name"
+            name="price"
+            placeholder="Gift Price"
             value={giftFormData.price}
             className="form-input w-100"
             style={{ lineHeight: "1.5", resize: "vertical" }}
@@ -71,14 +78,18 @@ const GiftForm = () => {
         <div className="col-12 col-lg-9">
           <textarea
             name="giftLink"
-            placeholder="New Wishlist Name"
+            placeholder="Gift Link"
             value={giftFormData.giftLink}
             className="form-input w-100"
             style={{ lineHeight: "1.5", resize: "vertical" }}
             onChange={handleInputChange}
           ></textarea>
         </div>
-
+        {error && (
+              <div className="col-12 my-3 bg-danger text-white p-3">
+                {error.message}
+              </div>
+            )}
         <div className="col-12 col-lg-3">
           <button className="btn btn-primary btn-block py-3" type="submit">
             Add Gift

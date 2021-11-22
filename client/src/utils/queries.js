@@ -7,6 +7,7 @@ export const QUERY_ME = gql`
             username
             email
             wishlists {
+                _id
                 listName
                 priceLimit
                 gifts {
@@ -23,12 +24,13 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_WISHLIST = gql`
-     query getWishlist($wishlistId: ID!) {
-            wishlists(wishlistId: $wishlistId) {
+     query getWishlist($wishlistId: String!) {
+            wishlist(wishlistId: $wishlistId) {
                 _id
                 listName
                 priceLimit
                 gifts {
+                    _id
                     giftName
                     price
                     giftLink

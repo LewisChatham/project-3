@@ -33,13 +33,15 @@ const Home = () => {
       const {data} = await removeWishlist({variables: {wishlistId} });
 
       console.log({data})
+      window.location.assign("/")
     } catch (err) {
       console.error(err);
     }
   };
 
-
-
+  if(!Auth.loggedIn()){
+    return (<h1> Please Login or sign up to add wishlists </h1>)
+  }
 
 
   return (

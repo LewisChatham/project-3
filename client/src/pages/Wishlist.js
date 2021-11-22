@@ -10,7 +10,7 @@ import {QUERY_WISHLIST} from '../utils/queries'
 
 
 const Wishlist = () => {
-    const {wishlistId} = useParams();
+    const { wishlistId } = useParams();
 
     const { loading, data } = useQuery(QUERY_WISHLIST, {
         // pass URL parameter

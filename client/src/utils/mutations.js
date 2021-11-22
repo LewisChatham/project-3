@@ -31,7 +31,6 @@ export const ADD_WISHLIST = gql`
       listName
       priceLimit
       gifts{
-        _id
         giftName
         price
         giftLink
@@ -60,8 +59,8 @@ export const REMOVE_WISHLIST = gql`
 
 
 export const ADD_GIFT = gql`
-  mutation addGift($input: giftInput){
-    addgift(input: $input){
+  mutation addGift($wishlistId: String!, $input: giftInput!){
+    addGift(wishlistId: $wishlistId, input: $input){
       _id
       listName
       priceLimit

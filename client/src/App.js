@@ -43,7 +43,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/wishlist/:id' component={Wishlist} />
+            <Route exact path='/wishlist/:wishlistId' component={Wishlist} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </>
