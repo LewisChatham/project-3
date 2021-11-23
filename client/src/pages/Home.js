@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { useQuery, useMutation } from '@apollo/client';
-
 import WishlistForm from '../components/WishlistForm';
-
 import {QUERY_ME} from '../utils/queries'
-
 import {REMOVE_WISHLIST} from '../utils/mutations'
-
 import Auth from '../utils/auth';
+import Carousel from 'react-bootstrap/Carousel'
+import image1 from '../images/carousel-gift-1.jpg'
+import image2 from '../images/carousel-gift-2.jpg'
+import './home.css'
 
 const Home = () => {
   
@@ -40,7 +39,34 @@ const Home = () => {
   };
 
   if(!Auth.loggedIn()){
-    return (<h1> Please Login or sign up to add wishlists </h1>)
+    return (
+    <main>
+      <Carousel variant="dark">
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={image1}
+            alt="First slide"
+          />
+          <Carousel.Caption className="first-caption">
+            <h5>Easily organise your gifts</h5>
+            <p>Using our many tools, you can create gift lists and manage them from within your personal dashboard.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={image2}
+            alt="Second slide"
+          />
+          <Carousel.Caption  className="second-caption">
+            <h5>Login to take the reins</h5>
+            <p>Pun intended</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </main>
+    )
   }
 
 

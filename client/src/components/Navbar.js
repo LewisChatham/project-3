@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
+import './Navbar.css';
 
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
   // set modal display state
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='dark' variant='dark' expand='lg' className="nav">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             My Gift Tracker
@@ -20,16 +21,18 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                View My Wishlists
-              </Nav.Link>
               {/* if user is logged in show saved wishlists and logout */}
               {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
+                <Nav.Links>
+                  <Nav.Link as={Link} to='/'>
+                    View My Wishlists
+                  </Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>
+                    Logout
+                  </Nav.Link>
+                </Nav.Links>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>Login</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
@@ -44,8 +47,8 @@ const AppNavbar = () => {
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
+            <Modal.Title id='signup-modal' className="w-100">
+              <Nav variant='pills' className="d-flex justify-content-around">
                 <Nav.Item>
                   <Nav.Link eventKey='login'>Login</Nav.Link>
                 </Nav.Item>
