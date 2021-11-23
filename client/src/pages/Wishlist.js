@@ -62,8 +62,9 @@ const Wishlist = () => {
         <>
             <GiftForm />
             <br />
-            <div>{wishlist.listName}</div>
-            <div>{wishlist.priceLimit}</div>
+            <div>List name: {wishlist.listName}</div>
+            <div>Price Limit: {wishlist.priceLimit}</div>
+            <br/>
             {
                 giftList.map((gift) => {
                     return (
@@ -78,7 +79,7 @@ const Wishlist = () => {
                                     <a href = {gift.giftLink} target="_blank" rel="noopener noreferrer"> Link to Gift</a>
                                     <button onClick={()=>handleGiftDelete(gift._id)}> Delete Gift</button>
                                     <button onClick={()=>handleGiftUpdate(gift._id, gift.itemBought)}> {
-                                        gift.itemBought? "Item Bought": "Item Not Bought"
+                                        gift.itemBought? "Item Not Bought": "Item Bought"
                                     }</button>
                            </div>
                         
