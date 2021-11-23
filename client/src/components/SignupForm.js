@@ -59,8 +59,8 @@ const SignupForm = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control
+            autoComplete="off"
             type='text'
             placeholder='Your username'
             name='username'
@@ -72,8 +72,8 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
           <Form.Control
+            autoComplete="off"
             type='email'
             placeholder='Your email address'
             name='email'
@@ -85,8 +85,8 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
           <Form.Control
+            autoComplete="off"
             type='password'
             placeholder='Your password'
             name='password'
@@ -99,8 +99,9 @@ const SignupForm = () => {
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
-          Submit
+          variant='success'
+          className="modal-submit">
+          Sign up
         </Button>
       </Form>
     </>

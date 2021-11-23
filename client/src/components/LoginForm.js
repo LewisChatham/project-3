@@ -53,8 +53,8 @@ const LoginForm = () => {
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
           <Form.Control
+            autoComplete="off"
             type='text'
             placeholder='Your email'
             name='email'
@@ -66,8 +66,8 @@ const LoginForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
           <Form.Control
+            autoComplete="off"
             type='password'
             placeholder='Your password'
             name='password'
@@ -80,8 +80,9 @@ const LoginForm = () => {
         <Button
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
-          Submit
+          variant='success'
+          className="modal-submit">
+          Login
         </Button>
       </Form>
     </>

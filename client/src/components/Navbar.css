@@ -1,0 +1,51 @@
+.nav-pills .nav-link.active {
+    background: #343A40;
+    border-radius: 50px;
+}
+
+.nav a, .nav a:hover {
+    color: #343A40;
+}
+
+.form-group input {
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 24px 20px;
+    width: 50%;
+    margin: auto;
+}
+
+.form-group input:focus {
+    box-shadow: none;
+    border-color: #343A40;
+}
+
+.modal-submit {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50px;
+    width: 30%;
+    background: #1FD760;
+    border: 1px solid #1FD760;
+    color: #343A40;
+    font-weight: 700;
+}
+
+.modal-submit:disabled, .modal-submit:disabled:hover {
+    background: #c4c4c4;
+    border: 1px solid #c4c4c4;
+    color: #343A40;
+}
+
+.modal-submit:hover {
+   background: #2EE26D; 
+   border: 1px solid #2EE26D;
+   color: #343A40;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle .modal-submit:active {
+    background-color: #1FD760; 
+    border-color: #1FD760;
+    color: #343A40;
+ }
+
