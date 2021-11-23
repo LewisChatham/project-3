@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
 
-import { ADD_WISHLIST } from '../../utils/mutations';
-// import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { useMutation } from "@apollo/client";
 
-import Auth from '../../utils/auth';
+import { ADD_WISHLIST } from "../utils/mutations";
+
+import Auth from "../utils/auth";
 
 const WishlistForm = () => {
-  const [wishlistFormData, setWishlistFormData] = useState({wishlistName : "", wishlistLimit: "", });
+  const [wishlistFormData, setWishlistFormData] = useState({
+    listName: "",
+    priceLimit: "",
+  });
 
-
-//   const [addThought, { error }] = useMutation(ADD_THOUGHT);
-
+  const [addWishlist, { error }] = useMutation(ADD_WISHLIST);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+      if (!token) {
+        return false;
+      }
+
+      const { data } = await addWishlist({
         variables: {
-          thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          ...wishlistFormData,
         },
       });
 
-      setThoughtText('');
+      console.log(data);
+
+      setWishlistFormData({ listName: "", priceLimit: "" });
+      window.location.assign("/")
     } catch (err) {
       console.error(err);
     }
@@ -33,8 +41,12 @@ const WishlistForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...wishlistFormData, [name]: value });
+    setWishlistFormData({ ...wishlistFormData, [name]: value });
   };
+
+  if(!Auth.loggedIn()){
+    return (<h1> Please Login or sign up to add wishlists </h1>)
+  }
 
   return (
     <div>
@@ -48,22 +60,22 @@ const WishlistForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="wishlistName"
+                name="listName"
                 placeholder="New Wishlist Name"
-                value={WishlistName}
+                value={wishlistFormData.listName}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleInputChange}
               ></textarea>
             </div>
 
             <div className="col-12 col-lg-9">
               <textarea
-                name="wishlistLimit"
+                name="priceLimit"
                 placeholder="Enter Wishlist Limit"
-                value={wishlistLimit}
+                value={wishlistFormData.priceLimit}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleInputChange}
               ></textarea>
             </div>
@@ -81,10 +93,7 @@ const WishlistForm = () => {
           </form>
         </>
       ) : (
-        <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        <p>You need to be logged in to add a wishlist.</p>
       )}
     </div>
   );

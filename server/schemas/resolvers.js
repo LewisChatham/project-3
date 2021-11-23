@@ -5,7 +5,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     wishlist: async (parent, { wishlistId }) => {
-      return User.find({ _id: wishlistId }).populate("wishlists");
+      return Wishlist.findOne({ _id: wishlistId }).populate("gifts");
     },
     me: async (parent, { id }, context) => {
       const foundUser = await User.findOne({
@@ -13,7 +13,7 @@ const resolvers = {
           { _id: context.user ? context.user._id : id },
           { username: context.user.username },
         ],
-      }).populate("Wishlists");
+      }).populate("wishlists");
 
       if (!foundUser) {
         throw new AuthenticationError("You need to be logged in!");
@@ -96,12 +96,14 @@ const resolvers = {
     },
     addGift: async(parent, {wishlistId, input}, context) => {
         if(context.user){
+            const newGift = await Gift.create({ ...input})
+
             return await Wishlist.findOneAndUpdate(
                 {_id: wishlistId},
-                {$addToSet: {gifts: input} },
+                {$addToSet: {gifts: newGift._id} },
                 { new: true, runValidators: true });
-
         }
+
         throw new AuthenticationError('You need to be logged in!');
     },
     updateGift: async(parent, {wishlistId, input}, context) => {

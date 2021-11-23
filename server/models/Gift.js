@@ -13,9 +13,13 @@ const giftSchema = new Schema({
     required: false,
     trim: true,
   },
+  giftLink: {
+    type: String,
+    trim: true,
+  },
   itemBought: {
-      type: Boolean,
-      default: false,
+    type: Boolean,
+    default: false,
   },
 });
 

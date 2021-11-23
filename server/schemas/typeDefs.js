@@ -12,14 +12,15 @@ const typeDefs = gql`
   type Wishlist {
     _id: ID
     listName: String
-    priceLimit: Float
+    priceLimit: String
     gifts: [Gift]
   }
 
   type Gift {
-    _id: ID
+    _id: String
     giftName: String
-    price: Float
+    price: String
+    giftLink: String
     itemBought: Boolean
   }
 
@@ -29,26 +30,26 @@ const typeDefs = gql`
   } 
   
   input giftInput {
-    _id: ID
     giftName: String
-    price: Float
+    price: String
+    giftLink: String
     itemBought: Boolean
   }
 
   type Query {
-    wishlist(wishlistId: ID!): Wishlist
+    wishlist(wishlistId: String!): Wishlist
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWishlist(listName: String!, priceLimit: Float): Wishlist
-    removeWishlist(wishlistId: ID!): Wishlist
-    updateWishlist(listName: String!, priceLimit: Float!) : Wishlist
-    addGift(wishlistid: ID, input: giftInput!): Wishlist
-    removeGift(giftId: ID!, WishlistId: ID!): Wishlist
-    updateGift(wishlistid: ID, input: giftInput!): Wishlist
+    addWishlist(listName: String!, priceLimit: String): Wishlist
+    removeWishlist(wishlistId: String!): Wishlist
+    updateWishlist(listName: String!, priceLimit: String!) : Wishlist
+    addGift(wishlistId: String!, input: giftInput!): Wishlist
+    removeGift(giftId: String!, WishlistId: String!): Wishlist
+    updateGift(wishlistid: String, input: giftInput!): Wishlist
   }
 `;
 
