@@ -32,8 +32,7 @@ const WishlistForm = () => {
 
       console.log(data);
 
-      setWishlistFormData({ listName: "", priceLimit: "" });
-      window.location.assign("/")
+      setWishlistFormData({ listName: "", priceLimit: "" })
     } catch (err) {
       console.error(err);
     }

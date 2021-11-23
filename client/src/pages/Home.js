@@ -14,6 +14,7 @@ import Auth from '../utils/auth';
 const Home = () => {
   
   const { loading, data } = useQuery(QUERY_ME);
+
   const dataMe = data?.me || {};
   const myWishlists = dataMe?.wishlists || [];
 
@@ -33,7 +34,6 @@ const Home = () => {
       const {data} = await removeWishlist({variables: {wishlistId} });
 
       console.log({data})
-      window.location.assign("/")
     } catch (err) {
       console.error(err);
     }
@@ -59,7 +59,7 @@ const Home = () => {
           ) : (
             myWishlists.map((myWishlist) => {
               return (
-                <>
+              
                 <div key = {myWishlist._id}>
                 <Link to={`/wishlist/${myWishlist._id}`}>
                 <div key = {myWishlist._id} >
@@ -77,9 +77,10 @@ const Home = () => {
                   onClick = {() => handleDeleteWishlist(myWishlist._id)}
                 >
                   Delete This Wishlist
-                </button>
+                </button> 
+                {/* might get rid of delete button, doesnt do anything */}
                 </div>
-                </>
+                
               )
             })
 

@@ -55,26 +55,22 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { wishlists: wishlist._id } }
+          { $addToSet: { wishlists: wishlist._id } },
+          {new: true},
         );
 
         return wishlist;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    updateWishlist: async (parent, { listName, priceLimit }, context) => {
+    updateGift: async (parent, {giftId, itemBought }, context) => {
         if (context.user) {
-          const wishlist = await Wishlist.findOne({
-            listName,
-            priceLimit,
-          });
-  
-          await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { wishlists: wishlist._id } }
-          );
-  
-          return wishlist;
+          const updatedGift = await Gift.findOneAndUpdate(
+            {_id: giftId},
+            {itemBought},
+            {new: true});
+
+          return updatedGift;
         }
         throw new AuthenticationError("You need to be logged in!");
       },
@@ -86,7 +82,8 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { wishlists: wishlist._id } }
+          { $pull: { wishlists: wishlist._id } },
+          {new: true},
         );
 
         return wishlist;
@@ -101,34 +98,30 @@ const resolvers = {
             return await Wishlist.findOneAndUpdate(
                 {_id: wishlistId},
                 {$addToSet: {gifts: newGift._id} },
-                { new: true, runValidators: true });
+                { new: true, runValidators: true }).populate("gifts");
         }
 
         throw new AuthenticationError('You need to be logged in!');
-    },
-    updateGift: async(parent, {wishlistId, input}, context) => {
-        if(context.user){
-            return await Wishlist.findOneAndUpdate(
-                {_id: wishlistId},
-                {$addToSet: {gifts: input} },
-                { new: true, runValidators: true });
-
-        }
-        throw new AuthenticationError('You need to be logged in!');
-        // ask Rhys how to resolve this
     },
     removeGift: async(parent, {wishlistId, giftId}, context) => {
+      console.log(giftId, wishlistId)
         if (context.user) {
-            return Wishlist.findOneAndUpdate(
+            const deletedGift = await Gift.findOneAndDelete(
+              {_id: giftId},
+            );
+
+            console.log(deletedGift);
+
+              
+            return await Wishlist.findOneAndUpdate(
               { _id: wishlistId },
               {
                 $pull: {
-                  gift: {
-                    _id: giftId,
+                  gifts: { _id: gift._id,
                   },
                 },
               },
-              { new: true }
+              {new: true, runValidators: true, multi: true}
             );
           }
           throw new AuthenticationError('You need to be logged in!');

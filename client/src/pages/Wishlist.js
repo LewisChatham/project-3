@@ -9,6 +9,8 @@ import {QUERY_WISHLIST} from '../utils/queries'
 
 import {REMOVE_GIFT, UPDATE_GIFT} from '../utils/mutations' 
 
+import Auth from "../utils/auth";
+
 
 
 const Wishlist = () => {
@@ -20,24 +22,32 @@ const Wishlist = () => {
       });
     
     const [ removeGift, { error } ] = useMutation(REMOVE_GIFT)
-    const [ updateGift, { error } ] = useMutation(UPDATE_GIFT)
+
+    const [ updateGift] = useMutation(UPDATE_GIFT)
 
     const wishlist = data?.wishlist || {};
 
     const giftList = wishlist?.gifts || [];
 
-    const handleGiftDelete = async (giftID) => {
+    const handleGiftDelete = async (giftId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+          return false;
+        }
+
         try {
-        const { data } = await removeGift(giftID);
+        const { data } = await removeGift({variables: {wishlistId, giftId}});
         console.log(data);
         } catch(err){
             console.error(err)
         }
     }
 
-    const handleGiftUpdate = async (giftID) => {
+    const handleGiftUpdate = async (giftId, itemBought) => {
         try {
-            const { data } = await updateGift(giftID);
+            itemBought = !itemBought;
+            const { data } = await updateGift({variables: {giftId, itemBought}});
             console.log(data);
             } catch(err){
                 console.error(err)
@@ -52,13 +62,13 @@ const Wishlist = () => {
         <>
             <GiftForm />
             <br />
-            <div>{wishlist.listname}</div>
+            <div>{wishlist.listName}</div>
             <div>{wishlist.priceLimit}</div>
             {
                 giftList.map((gift) => {
                     return (
-                        <>
-                            <div key = {gift._id }>
+                        
+                            <div key={gift._id}>
                                 <div> 
                                     Gift Name: {gift.giftName}
                                 </div>
@@ -67,8 +77,11 @@ const Wishlist = () => {
                                 </div>
                                     <a href = {gift.giftLink} target="_blank" rel="noopener noreferrer"> Link to Gift</a>
                                     <button onClick={()=>handleGiftDelete(gift._id)}> Delete Gift</button>
+                                    <button onClick={()=>handleGiftUpdate(gift._id, gift.itemBought)}> {
+                                        gift.itemBought? "Item Bought": "Item Not Bought"
+                                    }</button>
                            </div>
-                        </>
+                        
                     )
             })}
 
