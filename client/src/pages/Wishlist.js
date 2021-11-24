@@ -1,104 +1,112 @@
-import React from 'react';
+import React, {useState } from "react";
 
-import { useParams } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import { useParams } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
 
-import GiftForm from '../components/GiftForm'
+import GiftForm from "../components/GiftForm";
 
-import {QUERY_WISHLIST} from '../utils/queries'
+import { QUERY_WISHLIST } from "../utils/queries";
 
-import { UPDATE_GIFT} from '../utils/mutations' 
+import { UPDATE_GIFT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
-
-
 const Wishlist = () => {
-    const { wishlistId } = useParams();
+  const { wishlistId } = useParams();
 
-    const { loading, data } = useQuery(QUERY_WISHLIST, {
-        // pass URL parameter
-        variables: { wishlistId: wishlistId },
-      });
 
-    
-    
-    // const [ removeGift, { error } ] = useMutation(REMOVE_GIFT)
+  const { loading, data } = useQuery(QUERY_WISHLIST, {
+    // pass URL parameter
+    variables: { wishlistId: wishlistId },
+  });
 
-    const [ updateGift ] = useMutation(UPDATE_GIFT)
+  // const [ removeGift, { error } ] = useMutation(REMOVE_GIFT)
 
-    const wishlist = data?.wishlist || {};
+  const [updateGift] = useMutation(UPDATE_GIFT);
 
-    const giftList = wishlist?.gifts || [];
+  const wishlist = data?.wishlist || {};
 
-    // const handleGiftDelete = async (giftId) => {
-    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const giftList = wishlist?.gifts || [];
 
-    //     if (!token) {
-    //       return false;
-    //     }
+  const calcSumOfBought = () => {
+    var acc = 0;
+    for (var i = 0; i < giftList.length; i++) {
+      if (!giftList.itemBought) {
+        acc = acc + giftList[i].price;
+        console.log(acc, giftList);
+      }
+    }
+    return acc;
+  };
 
-    //     try {
-    //     const { data } = await removeGift({variables: {wishlistId, giftId}});
-    //     console.log(data);
-    //     } catch(err){
-    //         console.error(err)
-    //     }
-    // }
+  const [sumOfBought, setSumOfBought] = useState(calcSumOfBought);
 
-    const handleGiftUpdate = async (giftId, itemBought) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-            if (!token) {
-              return false;
-            }
 
-        try {
-            itemBought = !itemBought;
-            const { data } = await updateGift({variables: {giftId, itemBought}});
-            console.log(data);
-            } catch(err){
-                console.error(err)
-            }
+  // const handleGiftDelete = async (giftId) => {
+  //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+  //     if (!token) {
+  //       return false;
+  //     }
+
+  //     try {
+  //     const { data } = await removeGift({variables: {wishlistId, giftId}});
+  //     console.log(data);
+  //     } catch(err){
+  //         console.error(err)
+  //     }
+  // }
+
+  const handleGiftUpdate = async (giftId, itemBought) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
     }
 
-    // const sum
-
-    if (loading) {
-        return <div>Loading...</div>;
+    try {
+      itemBought = !itemBought;
+      const { data } = await updateGift({ variables: { giftId, itemBought } });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
     }
-
-    return (
-        <>
-            <GiftForm />
-            <br />
-            <div>List name: {wishlist.listName}</div>
-            <div>Price Limit: {wishlist.priceLimit}</div>
-            <br/>
-            {
-                giftList.map((gift) => {
-                    return (
-                        
-                            <div key={gift._id}>
-                                <div> 
-                                    Gift Name: {gift.giftName}
-                                </div>
-                                <div> 
-                                    Gift Price (£): {gift.price}
-                                </div>
-                                    <a href = {gift.giftLink} target="_blank" rel="noopener noreferrer"> Link to Gift</a>
-                                    {/* <button onClick={()=>handleGiftDelete(gift._id)}> Delete Gift</button> */}
-                                    <button onClick={()=>handleGiftUpdate(gift._id, gift.itemBought)}> {
-                                        gift.itemBought? "Item Not Bought": "Item Bought"
-                                    }</button>
-                           </div>
-                        
-                    )
-            })}
+  };
 
 
-        </>
-    )
-}
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <GiftForm />
+      <br />
+      <div>List name: {wishlist.listName}</div>
+      <div>Price Limit (£): {wishlist.priceLimit}</div>
+      <div>Cost of Items Bought (£): {sumOfBought}</div>
+      <br />
+      {giftList.map((gift) => {
+        return (
+          <div key={gift._id}>
+            <div>Gift Name: {gift.giftName}</div>
+            <div>Gift Price (£): {gift.price}</div>
+
+            <a href={gift.giftLink} target="_blank" rel="noopener noreferrer">
+              {" "}
+              Link to Gift
+            </a>
+            {/* <button onClick={()=>handleGiftDelete(gift._id)}> Delete Gift</button> */}
+            <button onClick={() => handleGiftUpdate(gift._id, gift.itemBought)}>
+              {" "}
+              {gift.itemBought ? "Item Not Bought" : "Item Bought"}
+            </button>
+          </div>
+        );
+      })}
+    </>
+  );
+};
 
 export default Wishlist;
