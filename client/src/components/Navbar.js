@@ -23,16 +23,16 @@ const AppNavbar = () => {
             <Nav className='ml-auto'>
               {/* if user is logged in show saved wishlists and logout */}
               {Auth.loggedIn() ? (
-                <Nav.Links>
+                <>
                   <Nav.Link as={Link} to='/'>
                     View My Wishlists
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>
                     Logout
                   </Nav.Link>
-                </Nav.Links>
+                </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

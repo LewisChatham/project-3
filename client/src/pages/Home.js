@@ -96,16 +96,17 @@ const Home = () => {
                     price limit: {myWishlist.priceLimit}
                   </div>
                 </div> 
-                </Link>
+                
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
-                  onClick = {() => handleDeleteWishlist(myWishlist._id)}
+                  
                 >
-                  Delete This Wishlist
+                  View Wishlist
                 </button> 
-                {/* might get rid of delete button, doesnt do anything */}
+                </Link>
                 </div>
+                
                 
               )
             })
