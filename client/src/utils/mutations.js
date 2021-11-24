@@ -77,7 +77,7 @@ export const ADD_GIFT = gql`
 
 export const REMOVE_GIFT = gql`
   mutation removeGift($wishlistId: String!, $giftId: String!){
-    addgift(wishlistId: $wishlistId, giftId: $giftId){
+    removeGift(wishlistId: $wishlistId, giftId: $giftId){
       _id
       listName
       priceLimit
@@ -91,7 +91,16 @@ export const REMOVE_GIFT = gql`
     }
   }
 `
-
+export const UPDATE_GIFT = gql`
+  mutation updateGift($giftId: String!, $itemBought: Boolean){
+  updateGift(giftId: $giftId, itemBought: $itemBought){
+    _id
+    giftName
+    price
+    giftLink
+    itemBought
+  }
+}`;
 
 
 
