@@ -57,7 +57,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { wishlists: wishlist._id } },
           {new: true},
-        );
+        ).populate("wishlists");
 
         return wishlist;
       }
