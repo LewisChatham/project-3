@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_WISHLIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const WishlistForm = () => {
-  const [wishlistFormData, setWishlistFormData] = useState({
-    listName: "",
-    priceLimit: "",
-  });
+const WishlistForm = ({ onUpdated, wishlistFormData, setWishlistFormData, setWishlistsData, wishlistsData}) => {
 
-  const [addWishlist, { error }] = useMutation(ADD_WISHLIST);
+  const [addWishlist, { error, called, loading }] = useMutation(ADD_WISHLIST);
+
+  useEffect(() => {
+    if (!loading && called) {
+      onUpdated()
+    }
+  }, [called, loading])
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +31,9 @@ const WishlistForm = () => {
 
       console.log(data);
 
+      setWishlistsData({...wishlistsData, wishlistFormData })
       setWishlistFormData({ listName: "", priceLimit: "" })
+     
     } catch (err) {
       console.error(err);
     }

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import WishlistForm from '../components/WishlistForm';
 import {QUERY_ME} from '../utils/queries'
-import {REMOVE_WISHLIST} from '../utils/mutations'
 import Auth from '../utils/auth';
 import Carousel from 'react-bootstrap/Carousel'
 import image1 from '../images/carousel-gift-1.jpg'
@@ -12,31 +11,22 @@ import './home.css'
 
 const Home = () => {
   
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
+
+  const [wishlistFormData, setWishlistFormData] = useState({
+    listName: "",
+    priceLimit: "",
+  });
 
   const dataMe = data?.me || {};
   const myWishlists = dataMe?.wishlists || [];
 
+
+  const[wishlistsData, setWishlistsData] = useState(myWishlists);
+
+
   console.log(myWishlists);
 
-
-  const [removeWishlist, {error}] = useMutation(REMOVE_WISHLIST);
-
-  const handleDeleteWishlist = async (wishlistId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const {data} = await removeWishlist({variables: {wishlistId} });
-
-      console.log({data})
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   if(!Auth.loggedIn()){
     return (
@@ -74,7 +64,7 @@ const Home = () => {
     <main>
       <div className="row">
         <div className="col-xs-12 col-md-6">
-          <WishlistForm />
+          <WishlistForm onUpdated={() => refetch()} wishlistFormData={wishlistFormData} setWishlistFormData={setWishlistFormData} wishlistsData={wishlistsData} setWishlistsData={setWishlistsData} />
         </div>
         <div className="col-xs-12 col-md-6">
           <div className="wishlist-container">
