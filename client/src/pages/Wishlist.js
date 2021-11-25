@@ -1,10 +1,7 @@
 import React from 'react';
-
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
 import GiftForm from '../components/GiftForm'
-
 import {QUERY_WISHLIST} from '../utils/queries'
 
 

@@ -100,7 +100,7 @@ const SignupForm = () => {
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'
-          className="modal-submit">
+          className="form-submit">
           Sign up
         </Button>
       </Form>
