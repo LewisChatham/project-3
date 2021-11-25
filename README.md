@@ -1,8 +1,19 @@
-# project-3
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# My Wishlist Checker
 
 ## Table of Contents
 
-## Link to App
+- [Link-To-App](#link-to-app)
+- [Description](#description)
+- [Demonstration](#demonstration)
+- [Installation](#installation)
+- [Running-The-App](#running-the-app)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
+## Link-To-App
 
 ## Description
 
@@ -14,7 +25,7 @@ We started this project in order to learn how to use React and MongoDB better, a
 
 ## Installation
 
-## Running the App
+## Running-The-App
 
 ## Usage
 
