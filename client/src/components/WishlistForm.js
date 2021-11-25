@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-
 import { useMutation } from "@apollo/client";
-
 import { ADD_WISHLIST } from "../utils/mutations";
-
 import Auth from "../utils/auth";
 
 const WishlistForm = () => {
@@ -48,39 +45,32 @@ const WishlistForm = () => {
   }
 
   return (
-    <div>
-      <h3>Enter Wishlist Info Below</h3>
+    <div className="form-container">
+      <h3>Create a wishlist</h3>
 
       {Auth.loggedIn() ? (
         <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
+          <form onSubmit={handleFormSubmit}>
+            <div>
+              <input
                 name="listName"
-                placeholder="New Wishlist Name"
+                placeholder="Name your wishlist"
                 value={wishlistFormData.listName}
-                className="form-input w-100"
-                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleInputChange}
-              ></textarea>
+              ></input>
             </div>
 
-            <div className="col-12 col-lg-9">
-              <textarea
+            <div>
+              <input
                 name="priceLimit"
-                placeholder="Enter Wishlist Limit"
+                placeholder="Wishlist budget (£)"
                 value={wishlistFormData.priceLimit}
-                className="form-input w-100"
-                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleInputChange}
-              ></textarea>
+              ></input>
             </div>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
+            <div className="col-12">
+              <button className="create-list" type="submit">
                 Add Wishlist
               </button>
             </div>
