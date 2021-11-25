@@ -49,53 +49,47 @@ const GiftForm = () => {
 
   return (
     <>
-      <form
-        className="flex-row justify-center justify-space-between-md align-center"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="col-12 col-lg-9">
-          <textarea
+      <div className="form-container">
+        <h3>Add a gift</h3>
+      <form className="" onSubmit={handleFormSubmit}>
+        <div>
+          <input
             name="giftName"
             placeholder="Gift Name"
             value={giftFormData.giftName}
-            className="form-input w-100"
-            style={{ lineHeight: "1.5", resize: "vertical" }}
             onChange={handleInputChange}
-          ></textarea>
+          ></input>
         </div>
 
-        <div className="col-12 col-lg-9">
-          <textarea
+        <div>
+          <input
             name="price"
             placeholder="Gift Price"
             value={giftFormData.price}
-            className="form-input w-100"
-            style={{ lineHeight: "1.5", resize: "vertical" }}
             onChange={handleInputChange}
-          ></textarea>
+          ></input>
         </div>
 
-        <div className="col-12 col-lg-9">
-          <textarea
+        <div>
+          <input
             name="giftLink"
             placeholder="Gift Link"
             value={giftFormData.giftLink}
-            className="form-input w-100"
-            style={{ lineHeight: "1.5", resize: "vertical" }}
             onChange={handleInputChange}
-          ></textarea>
+          ></input>
         </div>
         {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
               </div>
             )}
-        <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
+        <div>
+          <button className="create-list" type="submit">
             Add Gift
           </button>
         </div>
       </form>
+      </div>
     </>
   );
 };

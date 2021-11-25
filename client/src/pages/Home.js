@@ -75,8 +75,9 @@ const Home = () => {
               ) : (
                 myWishlists.map((myWishlist) => {
                   return (
+                    <Link to={`/wishlist/${myWishlist._id}`}>
                       <div key = {myWishlist._id}>
-                      <Link to={`/wishlist/${myWishlist._id}`}>
+                      
                         <div className="wl-card">
                           <div className="list-name">
                             {myWishlist.listName}
@@ -85,12 +86,13 @@ const Home = () => {
                             <span>£</span>{myWishlist.priceLimit}
                           </div>
                   
-                        <button className="delete-list" >
-                          Delete
-                        </button>
+                          <button className="delete-list" >
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     </Link>
-                    </div>
+                    
                 )
               })
             )}
