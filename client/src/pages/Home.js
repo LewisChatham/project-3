@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import WishlistForm from '../components/WishlistForm';
 import {QUERY_ME} from '../utils/queries'
 import Auth from '../utils/auth';

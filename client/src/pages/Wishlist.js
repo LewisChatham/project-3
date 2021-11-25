@@ -55,8 +55,8 @@ const Wishlist = () => {
 
           <div className="col-xs-12 col-md-6">
             <div className="gifts-details">
-              <div className="gifts-name">{wishlist.listName}</div>
-              <div className="gifts-budget"><span>£</span>{wishlist.priceLimit}</div>
+              <div className="gifts-name">Wishlist Name: {wishlist.listName}</div>
+              <div className="gifts-budget"> Price Limit: <span>£</span>{wishlist.priceLimit}</div>
             </div>
             <div className="gifts-container">
               {giftList.map((gift) => {
