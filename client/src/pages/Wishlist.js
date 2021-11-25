@@ -28,19 +28,6 @@ const Wishlist = () => {
 
   const giftList = wishlist?.gifts || [];
 
-  const calcSumOfBought = () => {
-    var acc = 0;
-    for (var i = 0; i < giftList.length; i++) {
-      if (!giftList.itemBought) {
-        acc = acc + giftList[i].price;
-        console.log(acc, giftList);
-      }
-    }
-    return acc;
-  };
-
-  const [sumOfBought, setSumOfBought] = useState(calcSumOfBought);
-
 
 
   // const handleGiftDelete = async (giftId) => {
@@ -85,7 +72,6 @@ const Wishlist = () => {
       <br />
       <div>List name: {wishlist.listName}</div>
       <div>Price Limit (£): {wishlist.priceLimit}</div>
-      <div>Cost of Items Bought (£): {sumOfBought}</div>
       <br />
       {giftList.map((gift) => {
         return (
