@@ -6,7 +6,6 @@
 
 - [Link-To-App](#link-to-app)
 - [Description](#description)
-- [Demonstration](#demonstration)
 - [Installation](#installation)
 - [Running-The-App](#running-the-app)
 - [Usage](#usage)
@@ -19,15 +18,17 @@ Link to application: https://rocky-reaches-82729.herokuapp.com/
 
 ## Description
 
-We wated to give our users a quick and easy way of planning their christmas shopping. No longer will they have to struggle to remember each person that they have to buy for, inevitably forget a gift they should've gotten, or just flat out ending up spending way too much. Now using our app you can plan out a wishlist, set a price limit, add items, and set reminders for these items. 
+We wanted to give consumers a quick and easy way of planning their holiday shopping. No longer will they have to struggle to remember each person that they have to buy for, inevitably forget a gift they should've gotten, or just flat out ending up spending way too much. With our application, you can plan out wishlists for all your loved ones, and save yourself some hassle. This application allows a user to login or signup, and oce they have, they care able to create multiple wishlists and enter a spending limit if they so wish. Within each wishlist a user can add multiple items to the list and check off whether the item was bought. 
 
-We started this project in order to learn how to use React and MongoDB better, as well as test our overall coding knowledge.
-
-## Demonstration
+We started this project in order to learn how to use React and MongoDB better, as well as test our overall coding knowledge and demonstrate. 
 
 ## Installation
 
+To install your own version that works locally, first, clone the repo to your local repository. Once you ahve done this, type `npm i` while in the root of the folder to install all dependencies (note, please make sure graphql is v15.x.x, and @apollo/server v2.x.x are installed, or the application will not work). make sure you have `MongoDB` installed on your device (and optionally `Robo 3T`). Then type `npm run develop` to start both the express erver and the `React` development server and you can test the app at `localhost:3000`.
+
 ## Running-The-App
+
+To deploy your own version of the application, make sure you have a heroku account and a `MongoAtlas` database set up. Follow [these instrucions](https://devcenter.heroku.com/articles/git) to deploy your application to heroku. Once you have done this, go to your MongoAtlas database and find the option to connect application and copy the connection string. Update the connection string with your username, password and database name and go to the heroku page that relates to your application. On the settings tab, find the config vars section and in the `KEY` section, enter `MONGODB_URI` and in the `VALUE` section, enter your updated connection string. Once you have done this, the application should work in full.
 
 ## Usage
 

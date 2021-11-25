@@ -88,7 +88,7 @@ const Home = () => {
               
                 <div key = {myWishlist._id}>
                 <Link to={`/wishlist/${myWishlist._id}`}>
-                <div key = {myWishlist._id} >
+                <div >
                   <div>
                     list name: {myWishlist.listName}
                   </div>
