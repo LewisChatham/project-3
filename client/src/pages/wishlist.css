@@ -1,0 +1,68 @@
+.gifts-details {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-right: 80px;
+}
+
+.gifts-name {
+    font-size: 32px;
+    font-weight: 600;
+    margin-right: 80px;
+}
+
+.gifts-budget {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.gifts-budget span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.gifts-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-right: 80px;
+}
+
+.gift-card {
+    flex: 0 1 calc(33% - 40px); 
+    border-radius: 20px;
+    background: #FEFEFE;
+    filter: drop-shadow(0 8px 15px #2c2c2c21);
+    padding: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+ }
+
+ .gift-card div {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+ }
+
+ .gift-card a {
+    display: block;
+    margin-bottom: 8px;
+ }
+
+ .gift-card span {
+     font-size: 16px;
+ }
+
+ .gift-card button {
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    margin: auto;
+    background: #FF7964;
+    border: 1px solid #FF7964;
+    color: #343A40;
+    font-weight: 700;
+    padding: 0px 16px;
+ }
