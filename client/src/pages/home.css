@@ -52,3 +52,160 @@
         font-size: 16px;
     }
 }
+
+main {
+    position: relative;
+    min-height: calc(100vh - 56px);
+    background: #F6F6F6;
+}
+
+.form-container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    right: 80px;
+    top: 122px;
+    width: 450px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 40px 60px;
+    background: #FEFEFE;
+    filter: drop-shadow(0 8px 15px #2c2c2c21);
+}
+
+.form-container h3 {
+    margin-bottom: 32px;
+    font-size: 40px;
+}
+
+.form-container input {
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 16px 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+    
+.form-container input:focus {
+    box-shadow: none;
+    border: 1px solid #343A40;
+    outline: none;
+}
+
+.create-list {
+    margin: auto;
+    border-radius: 50px;
+    background: #1FD760;
+    border: 1px solid #1FD760;
+    color: #343A40;
+    font-weight: 700;
+    padding: 12px 32px;
+}
+
+.create-list:disabled, .create-list:disabled:hover {
+    background: #c4c4c4;
+    border: 1px solid #c4c4c4;
+    color: #343A40;
+}
+
+.create-list:hover {
+   background: #2EE26D; 
+   border: 1px solid #2EE26D;
+   color: #343A40;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle .create-list:active {
+    background-color: #1FD760; 
+    border-color: #1FD760;
+    color: #343A40;
+ }
+
+ .wishlist-container {
+     margin-top: 80px;
+     padding-right: 80px;
+ }
+
+ .wishlists {
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+ }
+
+ .wishlists a {
+    flex: 0 1 calc(33% - 40px);
+ }
+
+ @media only screen and (max-width: 1600px) {
+    .wishlists a {
+        flex: 0 1 calc(50% - 40px);
+     }
+ }
+
+ @media only screen and (max-width: 1200px) {
+    .wishlists a {
+        flex: 0 1 100%;
+     }
+ }
+ 
+ a:hover {
+     cursor: pointer;
+     text-decoration: none;
+ }
+
+ .wl-card {
+    border-radius: 20px;
+    background: #FEFEFE;
+    filter: drop-shadow(0 8px 15px #2c2c2c21);
+    padding: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+ }
+
+ .list-name {
+     color: #212529;
+     font-size: 24px;
+     font-weight: 600;
+     text-decoration: none;
+     margin-bottom: 16px;
+ }
+
+ .price-limit {
+    color: #212529;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+ }
+
+ .price-limit span {
+    font-size: 20px;
+    font-weight: 700;
+ }
+
+ .delete-list {
+    margin: auto;
+    border-radius: 50px;
+    background: #FF7964;
+    border: 1px solid #FF7964;
+    color: #343A40;
+    font-weight: 700;
+    padding: 6px 24px;
+}
+
+.delete-list:disabled, .delete-list:disabled:hover {
+    background: #c4c4c4;
+    border: 1px solid #c4c4c4;
+    color: #343A40;
+}
+
+.delete-list:hover {
+   background: #FF7964; 
+   border: 1px solid #FF7964;
+   color: #343A40;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle .delete-list:active {
+    background-color: #FF7964; 
+    border-color: #FF7964;
+    color: #343A40;
+ }

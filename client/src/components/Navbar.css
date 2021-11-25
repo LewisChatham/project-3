@@ -20,7 +20,7 @@
     border-color: #343A40;
 }
 
-.modal-submit {
+.form-submit {
     margin-left: 50%;
     transform: translateX(-50%);
     border-radius: 50px;
@@ -31,19 +31,19 @@
     font-weight: 700;
 }
 
-.modal-submit:disabled, .modal-submit:disabled:hover {
+.form-submit:disabled, .form-submit:disabled:hover {
     background: #c4c4c4;
     border: 1px solid #c4c4c4;
     color: #343A40;
 }
 
-.modal-submit:hover {
+.form-submit:hover {
    background: #2EE26D; 
    border: 1px solid #2EE26D;
    color: #343A40;
 }
 
-.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle .modal-submit:active {
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle .form-submit:active {
     background-color: #1FD760; 
     border-color: #1FD760;
     color: #343A40;

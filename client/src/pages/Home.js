@@ -72,46 +72,41 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-center">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
+      <div className="row">
+        <div className="col-xs-12 col-md-6">
           <WishlistForm />
         </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            myWishlists.map((myWishlist) => {
-              return (
-              
-                <div key = {myWishlist._id}>
-                <Link to={`/wishlist/${myWishlist._id}`}>
-                <div >
-                  <div>
-                    list name: {myWishlist.listName}
-                  </div>
-                  <div>
-                    price limit: {myWishlist.priceLimit}
-                  </div>
-                </div> 
+        <div className="col-xs-12 col-md-6">
+          <div className="wishlist-container">
+            <h3>Your wishlists</h3>
+            <div className="wishlists">
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                myWishlists.map((myWishlist) => {
+                  return (
+                    <>
                 
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
+                      <Link to={`/wishlist/${myWishlist._id}`}>
+                        <div className="wl-card" key = {myWishlist._id}>
+                          <div className="list-name">
+                            {myWishlist.listName}
+                          </div>
+                          <div class="price-limit">
+                            <span>£</span>{myWishlist.priceLimit}
+                          </div>
                   
-                >
-                  View Wishlist
-                </button> 
-                </Link>
-                </div>
-                
-                
-              )
-            })
-
-          )}
+                        <button className="delete-list" onClick={()=>handleDeleteWishlist(myWishlist._id)}>
+                          Delete
+                        </button>
+                      </div>
+                    </Link>
+                  </>
+                )
+              })
+            )}
+            </div>
+          </div>
         </div>
       </div>
     </main>
