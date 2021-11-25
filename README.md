@@ -15,6 +15,8 @@
 
 ## Link-To-App
 
+Link to application: https://rocky-reaches-82729.herokuapp.com/
+
 ## Description
 
 We wated to give our users a quick and easy way of planning their christmas shopping. No longer will they have to struggle to remember each person that they have to buy for, inevitably forget a gift they should've gotten, or just flat out ending up spending way too much. Now using our app you can plan out a wishlist, set a price limit, add items, and set reminders for these items. 
