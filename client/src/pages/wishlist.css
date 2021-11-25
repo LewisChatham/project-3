@@ -40,6 +40,30 @@
     text-align: center;
  }
 
+ @media only screen and (max-width: 1600px) {
+    .gift-card {
+        flex: 0 1 calc(50% - 40px); 
+    }
+ }
+
+ @media only screen and (max-width: 1200px) {
+    .gifts-container {
+        padding-right: 32px;
+    }
+    .gift-card {
+        flex: 0 1 100%; 
+    }
+ }
+
+ @media only screen and (max-width: 800px) {
+    .gifts-details {
+        margin-top: 200px;
+    }
+    .gifts-container {
+        padding-left: 32px;
+    }
+ }
+
  .gift-card div {
     font-size: 20px;
     font-weight: 600;

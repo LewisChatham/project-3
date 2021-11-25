@@ -133,7 +133,14 @@ main {
  }
 
  .wishlists a {
+    display: block;
     flex: 0 1 calc(33% - 40px);
+    border-radius: 20px;
+    background: #FEFEFE;
+    filter: drop-shadow(0 8px 15px #2c2c2c21);
+    padding: 32px;
+    margin-bottom: 32px;
+    text-align: center;
  }
 
  @media only screen and (max-width: 1600px) {
@@ -143,9 +150,20 @@ main {
  }
 
  @media only screen and (max-width: 1200px) {
+    .wishlist-container {
+        margin-top: 80px;
+        padding-right: 32px;
+    }
     .wishlists a {
         flex: 0 1 100%;
      }
+ }
+
+ @media only screen and (max-width: 800px) {
+    .wishlist-container {
+        margin-top: 200px;
+        padding-left: 32px;
+    }
  }
  
  a:hover {
@@ -153,21 +171,12 @@ main {
      text-decoration: none;
  }
 
- .wl-card {
-    border-radius: 20px;
-    background: #FEFEFE;
-    filter: drop-shadow(0 8px 15px #2c2c2c21);
-    padding: 32px;
-    margin-bottom: 32px;
-    text-align: center;
- }
-
  .list-name {
-     color: #212529;
-     font-size: 24px;
-     font-weight: 600;
-     text-decoration: none;
-     margin-bottom: 16px;
+    color: #212529;
+    font-size: 24px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 16px;
  }
 
  .price-limit {
