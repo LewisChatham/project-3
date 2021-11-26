@@ -18,9 +18,9 @@ Link to application: https://rocky-reaches-82729.herokuapp.com/
 
 ## Description
 
-We wanted to give consumers a quick and easy way of planning their holiday shopping. No longer will they have to struggle to remember each person that they have to buy for, inevitably forget a gift they should've gotten, or just flat out ending up spending way too much. With our application, you can plan out wishlists for all your loved ones, and save yourself some hassle. This application allows a user to login or signup, and oce they have, they care able to create multiple wishlists and enter a spending limit if they so wish. Within each wishlist a user can add multiple items to the list and check off whether the item was bought. 
+We wanted to give consumers a quick and easy way of planning their holiday shopping. No longer will they have to struggle to remember each person that they have to buy for, inevitably forget a gift they should've got, or just flat out ending up spending way too much. With our application, you can plan out wishlists for all your loved ones, and save yourself some hassle. This application allows a user to login or signup, and oce they have, they care able to create multiple wishlists and enter a spending limit if they so wish. Within each wishlist a user can add multiple items to the list and check off whether the item was bought.
 
-We started this project in order to learn how to use React and MongoDB better, as well as test our overall coding knowledge and demonstrate. 
+We started this project in order to learn how to use React and MongoDB better, as well as test our overall coding knowledge and demonstrate.
 
 ## Installation
 
@@ -32,9 +32,11 @@ To deploy your own version of the application, make sure you have a heroku accou
 
 ## Usage
 
+![demo](./assets/GiftTrackerGif.gif)
+
 ## Credits
 
-All of the work in this project was provided by: Matthew Walford, Lewis Chatnam, and Kevin Ryner. 
+All of the work in this project was provided by: Matthew Walford, Lewis Chatnam, and Kevin Ryner.
 Github profiles below:
 
 Matthew Walford: https://github.com/Esper06
@@ -66,5 +68,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-

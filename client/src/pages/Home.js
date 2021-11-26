@@ -59,7 +59,6 @@ const Home = () => {
     )
   }
 
-
   return (
     <main>
       <div className="row">
@@ -83,11 +82,11 @@ const Home = () => {
                             {myWishlist.listName}
                           </div>
                           <div className="price-limit">
-                            <span>£</span>{myWishlist.priceLimit}
+                            <span>Price Limit: £</span>{myWishlist.priceLimit}
                           </div>
                   
                           <button className="delete-list" >
-                            Delete
+                            View Wishlist
                           </button>
                         </div>
                       </div>
